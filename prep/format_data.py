@@ -7,30 +7,10 @@ import pandas
 import simplejson
 import sys
 
-# SUPPORTING FUNCTIONS ######################################
-
-def pwd():
-    '''pwd returns the present working directory
-    '''
-    return os.path.abspath(os.path.dirname(hello.__file__))
+from utils import pwd, write_json
 
 
-def write_json(json_obj,filename,mode="w",print_pretty=True):
-    '''write_json will (optionally,pretty print) a json object to file
-    :param json_obj: the dict to print to json
-    :param filename: the output file to write to
-    :param pretty_print: if True, will use nicer formatting   
-    '''
-    filey = open(filename,mode)
-    if print_pretty == True:
-        filey.writelines(simplejson.dumps(json_obj, indent=4, separators=(',', ': ')))
-    else:
-        filey.writelines(simplejson.dumps(json_obj))
-    filey.close()
-    return filename
-
-
-# MAIN SCRIPT ###############################################
+# LIKELIHOOD HEATMAP ########################################
 
 pwd = pwd()
 
