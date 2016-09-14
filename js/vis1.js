@@ -59,7 +59,7 @@ function get_json(url) {
 
 function initParticleSystem() {
    
-    var data = get_json("../data/network_nonzero.json");
+    var data = get_json("..data/network_nonzero.json");
 
     mParticleCount = data.length;
 
