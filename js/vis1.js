@@ -59,7 +59,7 @@ function get_json(url) {
 
 function initParticleSystem() {
    
-    var data = get_json("../data/network.json");
+    var data = get_json("../data/network_nonzero.json");
 
     mParticleCount = data.length;
 
@@ -81,7 +81,7 @@ function initParticleSystem() {
     data.forEach(function(dat) {
 
             var x = (dat["x"] * 3) - 100;
-            var y = dat["y"] * 3;
+            var y = (dat["y"] * 3);
             var z = dat["value"] * 100;
 
             for (j = 0; j < prefabGeometry.vertices.length; j++) {

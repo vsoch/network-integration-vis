@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Network Visualization Fun!</title>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <style>
+	body {
+	  background-color: #60B9CE;  
+	}
+
+	* {
+	  box-sizing: border-box;
+	  margin: 0;
+	  padding: 0;
+	  list-style: none;
+	  position: relative;
+	}
+
+	button {
+	  border: none;
+	  background: none;
+	  cursor: pointer;
+	  color: #fff;
+	  position: fixed;
+	  height: 3.5em;
+	  width: 3.5em;
+	  left: 50%;
+	  bottom: -1.75em;
+	  z-index: 11;
+	  padding-bottom: 1em;
+	  margin-left: -1.75em;
+	  font-size: 1.5em;
+	  text-align: center;
+	  background-color: #015367;
+	  border-radius: 50%;
+	}
+
+	button:hover, button:active, button:focus {
+	  background-color: #206676;
+	}
+
+	.wrapper {
+	  font-size: 1em;
+	  position: fixed;
+	  width: 26em;
+	  height: 26em;
+	  bottom: -13em;
+	  left: 50%;
+	  z-index: 10;
+	  overflow: hidden;
+	  margin-left: -13em;
+	  border-radius: 50%;
+	  -webkit-transform: scale(0.1);
+	  -webkit-transition: all 0.3s ease;
+	}
+
+	.opened {
+	  border-radius: 50%;
+	  -webkit-transform: scale(1);
+	}
+
+	.wrapper li {
+	  font-size: 1.5em;  
+	  position: absolute;
+	  overflow: hidden;
+	  width: 10em;
+	  height: 10em;
+	  left: 50%;
+	  top: 50%;
+	  margin-top: -1.3em;
+	  margin-left: -10em;
+	  -webkit-transform-origin: 100% 100%;
+	  -webkit-transition: border 0.3s ease;
+	}
+
+	.wrapper li a {
+	  display: block;
+	  font-size: 1.18em;
+	  position: absolute;
+	  height: 14.5em;
+	  width: 14.5em;
+	  bottom: -7.25em;
+	  right: -7.25em;
+	  padding-top: 1.8em;
+	  border-radius: 50%;
+	  color: #fff;
+	  text-decoration: none;
+	  text-align: center;
+	  -webkit-transform: skew(-60deg) rotate(-75deg) scale(1);
+	  -webkit-transition: opacity 0.3s, color 0.3s;
+	}
+
+	.wrapper li a span {
+	  font-size: 1.1em;
+	  opacity: 0.7;
+	}
+
+	.wrapper li:first-child {
+	  -webkit-transform: rotate(0deg) skew(60deg);
+	}
+
+	.wrapper li:nth-child(2) {
+	  -webkit-transform: rotate(25deg) skew(60deg);
+	}
+
+	.wrapper li:nth-child(3) {
+	  -webkit-transform: rotate(50deg) skew(60deg);
+	}
+
+	.wrapper li:nth-child(4) {
+	  -webkit-transform: rotate(75deg) skew(60deg);
+	}
+
+	.wrapper li:nth-child(5) {
+	  -webkit-transform: rotate(100deg) skew(60deg);
+	}
+
+	.wrapper li:nth-child(6) {
+	  -webkit-transform: rotate(125deg) skew(60deg);
+	}
+
+	.wrapper li:nth-child(7) {
+	  -webkit-transform: rotate(150deg) skew(60deg);
+	}
+
+	.wrapper li:nth-child(odd) a {
+	  background-color: #38B2CE;
+	}
+
+	.wrapper li:nth-child(even) a {
+	  background-color: #60B9CE;
+	}
+
+	.overlay {
+	  width: 100%;
+	  height: 100%;
+	  background-color: rgba(0,0,0,0.6);
+	  position: fixed;
+	  top: 0;
+	  bottom: 0;
+	  left: 0;
+	  right: 0;
+	  z-index: 2;
+	  opacity: 0;
+	  transition: all 0.3s ease;
+	  pointer-events: none;
+	}
+
+	.overlay.on-overlay {
+	  opacity: 1;
+	  pointer-events: auto;
+	}
+
+
+	/* Responsive awesomeness */
+	@media screen and (max-width:480px){
+	  .csstransforms .cn-wrapper{
+	    font-size:.68em;
+	  }
+	  .cn-button{
+	    font-size:1em;
+	  }
+	  .csstransforms .cn-wrapper li {
+	    font-size:1.52em;
+	  }
+	}
+	 
+	@media screen and (max-width:320px){
+	  .no-csstransforms .cn-wrapper{
+	    width:15.15px;
+	    margin-left: -7.5em;
+	  }
+	  .no-csstransforms .cn-wrapper li{
+	    height:3em;
+	    width:3em;
+	  }
+	}
+    </style>
+    
+    
+    
+  </head>
+
+  <body>
+
+    <button id="expand-navigation">-</button>
+
+<section class="wrapper opened">
+
+  <ul>
+    <li><a href="vis1.html"><h1>1</h1></a></li>
+    <li><a href="vis2.html"><h1>2</h1></a></li>
+    <li><a href="vis3.html"><h1>3</h1></a></li>
+    <li><a href="vis4.html"><h1>4</h1></a></li>
+    <li><a href="vis5.html"><h1>5</h1></a></li>
+    <li><a href="vis6.html"><h1>6</h1></a></li>
+    <li><a href="vis7.html"><h1>7</h1></a></li>
+  </ul>
+</section>
+
+<div class="overlay on-overlay"></div>
+        <script src="js/index.js"></script>
+  </body>
+</html>
