@@ -114,7 +114,7 @@ Per my suggestion, @macshine sent some fantastic network data, and now we can te
 
 # Network #1
 
-[Integrated](net1.html) and [Segregated](net2.html)
+[Integrated](https://vsoch.github.io/network-integration-vis/net1.html) and [Segregated](https://vsoch.github.io/network-integration-vis/net2.html)
 
 This shows a basic clustering that allows for zooming inside of the plot. For this visualization, I had to generate my own list of x,y,z coordinates from the matrix @macshine sent. I used an [igraph](http://igraph.org/python/) basic clustering to do this. @macshine, if you have a clustering already generated, you can send me x,y,z coordinates from the visual and I'll update it to look like your plot.
 
@@ -128,7 +128,7 @@ and zoomed in:
 
 # Network #2
 
-[segregated](net3.html)
+[segregated](https://vsoch.github.io/network-integration-vis/net3.html)
 
 This next one is a combination of d3 and canvas, using a library called [grapher](https://github.com/ayasdi/grapher). This looks like every other interactive force directed graph on the internet, here is for the segregated data:
 
