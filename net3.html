@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Network Integration: Force with D3</title>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <style type="text/css">
+      html, body {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+      }
+      canvas {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+    <script type="text/javascript" src="js/grapher-min.js"></script>
+    <script type="text/javascript" src="js/d3.js"></script>
+    <script type="text/javascript">
+      // Generate some data
+      var network = {nodes: [], links: []},
+          width = window.innerWidth,
+          height = window.innerHeight,
+          i;
+
+      // Serial Xhr request, if web worker not available
+      function get_json(url) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, false);  // synchronous request
+            xhr.send(null);
+            return JSON.parse(xhr.responseText);
+     }
+   
+     var data = get_json("data/seg_coords.json");
+
+      // Add nodes
+     for (var i = 0; i < data.nodes.length; i++) {
+         var dat = data.nodes[i];
+         network.nodes.push({
+            x: dat['x'],
+            y: dat['y'],
+            r: Math.random() * 10 + 5,
+            weight: 1,
+            color: '#7bccc4'
+         });     
+      }
+
+      // Add links
+      for (var i = 0; i < data.edges.length; i++) {
+         var edge = data.edges[i];
+         var from = edge[0]
+         var to = edge[1]
+
+         network.links.push({
+           from: from,
+           to: to,
+           source: network.nodes[from],
+           target: network.nodes[to],
+           color: '#E0E0E0'
+        });
+
+      }
+
+      // We create a function that determines whether a click event falls on a node.
+      var getNodeIdAt = function (point) {
+        var node = -1,
+            x = point.x, y = point.y;
+
+        network.nodes.every(function (n, i) {
+          var inX = x <= n.x + n.r && x >= n.x - n.r,
+              inY = y <= n.y + n.r && y >= n.y - n.r,
+              found = inX && inY;
+          if (found) node = i;
+          return !found;
+        });
+
+        return node;
+      };
+
+      // Helper function for offsets.
+      function getOffset (e) {
+        if (e.offsetX) return {x: e.offsetX, y: e.offsetY};
+        var rect = e.target.getBoundingClientRect();
+        var x = e.clientX - rect.left,
+            y = e.clientY - rect.top;
+        return {x: x, y: y};
+      };
+
+      // Create a grapher instance (width, height, options)
+      var grapher = new Grapher({
+        data: network
+      });
+
+      // Variable to keep track of the node we're dragging and the current offset
+      var dragging = null,
+          offset = null;
+
+
+      // onTick gets called on each tick of D3's force
+      var onTick = function () {
+        if (dragging && offset) {
+          // update the node's position here so it's sticky
+          dragging.node.x = offset.x;
+          dragging.node.y = offset.y;
+        }
+        grapher.update(); // update the grapher
+      };
+
+      // Setup D3's force layout
+      var force = d3.layout.force()
+          .nodes(network.nodes)
+          .links(network.links)
+          .size([width, height])
+          .on('tick', onTick)
+          .charge(-5000)
+          .gravity(0.1)
+          .linkStrength(0.01)
+          .linkDistance(100)
+          .friction(0.02)
+          .start();
+
+      // On mousedown, grab the node that was clicked.
+      grapher.on('mousedown', function (e) {
+        var eOffset = getOffset(e);
+        var point = grapher.getDataPosition(eOffset);
+        var nodeId = getNodeIdAt(point);
+        if (nodeId > -1) {
+          dragging = {node: network.nodes[nodeId], id: nodeId};
+          offset = point;
+        }
+        else dragging = offset = null;
+      });
+
+      // When the user moves the mouse, we update the node's position
+      grapher.on('mousemove', function (e) {
+        var eOffset = getOffset(e);
+        var point = grapher.getDataPosition(eOffset);
+        if (dragging) {
+          offset = point;
+          force.alpha(1); // restart the force graph
+        }
+      });
+
+      // Finally when the user lets go of the mouse, we stop dragging
+      grapher.on('mouseup', function (e) { dragging = offset = null; });
+
+      // Append the grapher's view onto the page
+      document.body.appendChild(grapher.canvas);
+
+      // Render the graph using play. This will call render in a requestAnimationFrame loop.
+      grapher.play();
+    </script>
+  </body>
+</html>

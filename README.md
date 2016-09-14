@@ -126,4 +126,14 @@ and zoomed in:
 
 [img/net2.png](img/net2.png)
 
+# Network #2
+
+[segregated](net3.html)
+
+This next one is a combination of d3 and canvas, using a library called [grapher](https://github.com/ayasdi/grapher). This looks like every other interactive force directed graph on the internet, here is for the segregated data:
+
+[img/net3.png](img/net3.png)
+
+Oh yay, another hairball.
+
 
