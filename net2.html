@@ -1,0 +1,109 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Network Visualization #1</title>
+  <style>
+    #frame {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 0;
+    }
+
+    #label {
+      position: absolute;
+      top: 15;
+      left: 15;
+      z-index: 1;
+      color: white;
+      font-family: sans-serif;
+    }
+
+    #title {
+      position: absolute;
+      top: 15;
+      right: 15;
+      z-index: 1;
+      color: white;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+<div id="frame"></div>
+
+<div id="label"></div>
+<div id="title">Network Visualization #1: Segregated</div>
+
+<script src="js/graphosaurus.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script>
+var securityColor = function (security) {
+  var color;
+  security = Math.floor(security * 10 / 2);
+
+  switch (security) {
+    case -5: color = 0xf00000; break;
+    case -4: color = 0xd73000; break;
+    case -3: color = 0xf04800; break;
+    case -2: color = 0xf06000; break;
+    case -1: color = 0xd77700; break;
+    case -0: color = 0xefef00; break;
+    case  1: color = 0x8fef2f; break;
+    case  2: color = 0x00f000; break;
+    case  3: color = 0x00ef47; break;
+    case  4: color = 0x48f0c0; break;
+    case  5: color = 0x2fefef; break;
+    default: color = 0xffffff;
+  }
+
+  return color;
+};
+
+graph = G.graph({
+  nodeImage: "img/disc.png",
+  nodeImageTransparent: true,
+  antialias: true,
+  bgColor: "black",
+  edgeWidth: 0.1,
+  nodeSize: 60,
+  hover: function (node) { $("#label").text("Node: " + node.name); },
+});
+
+// Serial Xhr request, if web worker not available
+function get_json(url) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url, false);  // synchronous request
+    xhr.send(null);
+    return JSON.parse(xhr.responseText);
+}
+   
+var data = get_json("data/seg_coords.json");
+
+for (var i = 0; i < data.nodes.length; i++) {
+  var dat = data.nodes[i];
+  var systemId = dat['name'];
+  var coords = [dat['x'],dat['y'],dat['z']];
+  var security = -1;
+
+  var node = G.node(coords, {
+    id: systemId,
+    color: securityColor(security),
+  });
+  node.name = dat['name'];
+  node.addTo(graph);
+}
+
+for (var i = 0; i < data.edges.length; i++) {
+  G.edge(data.edges[i], {
+    color: 0xd73000,
+  }).addTo(graph);
+}
+
+graph.renderIn('frame');
+</script>
+</body>
+</html>

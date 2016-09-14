@@ -18,6 +18,8 @@ However I decided to start with a visualization of the "funny cloud-looking thin
 
 This is where we will start! 
 
+# Day 1: Liklihood Plot
+
 ## Data Preparation
 Is done with [prep/format_data.py](prep/format_data.py). We read in our data with `pandas` and prepare two versions of it, one that includes nonzero values, and one that does not. Each is parsed into a JSON data structure that captures the x and y coordinate, along with the likelihood value (z). A single data point might look like this:
 
@@ -104,3 +106,24 @@ Should probably stop this...
 
 # Comments
 @macshine - I think if we want to make an optimal visualization to match the idea of the paper, taking this approach we probably need to have something that is more akin to a network, and then make something with a graph. These particle systems are much more fit for that kind of display. We can integrate this likelihood space somewhere as well, but as a standalone it doesn't do the idea justice. I'd also suggest taking advantage of the browser and using some kind of temporal data, eg, showing the change of this plot over time. That would make these (sort of) boring visualizations much more useful, and you could send a link to Neuron that would let them render an svg for a particular view of the visualization that they like. For example, a simple network with changing strengths [could be animated](http://codepen.io/JulianLaval/pen/KpLXOO), and put against a background (that maybe also changes) to show the integration plot above.
+
+
+# Day 2: Network Proper
+
+Per my suggestion, @macshine sent some fantastic network data, and now we can test visualizations that attempt to show the integrated and segregated states. Data preparation is done with [prep/prep_transitional.py](prep/prep_transitional.py) and the main difference is that since we are interested in deriving a network, we need a list of nodes and links (connections between them) based on node ids. 
+
+# Network #1
+
+[Integrated](net1.html) and [Segregated](net2.html)
+
+This shows a basic clustering that allows for zooming inside of the plot. For this visualization, I had to generate my own list of x,y,z coordinates from the matrix @macshine sent. I used an [igraph](http://igraph.org/python/) basic clustering to do this. @macshine, if you have a clustering already generated, you can send me x,y,z coordinates from the visual and I'll update it to look like your plot.
+
+The network from far away:
+
+[img/net1.png](img/net1.png)
+
+and zoomed in:
+
+[img/net2.png](img/net2.png)
+
+
