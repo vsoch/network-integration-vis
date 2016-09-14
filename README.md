@@ -120,11 +120,11 @@ This shows a basic clustering that allows for zooming inside of the plot. For th
 
 The network from far away:
 
-[img/net1.png](img/net1.png)
+![img/net1.png](img/net1.png)
 
 and zoomed in:
 
-[img/net2.png](img/net2.png)
+![img/net2.png](img/net2.png)
 
 # Network #2
 
@@ -132,8 +132,9 @@ and zoomed in:
 
 This next one is a combination of d3 and canvas, using a library called [grapher](https://github.com/ayasdi/grapher). This looks like every other interactive force directed graph on the internet, here is for the segregated data:
 
-[img/net3.png](img/net3.png)
+![img/net3.png](img/net3.png)
 
 Oh yay, another hairball.
 
-
+## Comments
+These networks don't have much interesting structure, at least given the algorithm I used. It would be good to get the x,y,z coordinates for the networks that appear to have more structure!
