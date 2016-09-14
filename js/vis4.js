@@ -8,7 +8,7 @@ function get_json(url) {
 }
 
 
-data = get_json("../data/network_norm.json");
+data = get_json("data/network_norm.json");
 
 var camera;
 var scene;

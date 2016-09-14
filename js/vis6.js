@@ -33,7 +33,7 @@ var initParticleSlider = function(){
   (psScript.addEventListener
     ? psScript.addEventListener('load', init, false)
     : psScript.onload = init);
-  psScript.src = 'http://particleslider.com/js/particleslider/current/particleslider.js';
+  psScript.src = 'https://particleslider.com/js/particleslider/current/particleslider.js';
 	psScript.setAttribute('type', 'text/javascript');
   document.body.appendChild(psScript);
 }
