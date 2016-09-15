@@ -138,3 +138,15 @@ Oh yay, another hairball.
 
 ## Comments
 These networks don't have much interesting structure, at least given the algorithm I used. It would be good to get the x,y,z coordinates for the networks that appear to have more structure!
+
+
+# Day #3: No idea what to do
+
+[something dramatic?](https://vsoch.github.io/network-integration-vis/art1.html)
+
+This is generated from a 3D model of a labmate, so no license issues.
+
+A view like this is kind of cool:
+
+![img/art1.png](img/art1.png)
+
