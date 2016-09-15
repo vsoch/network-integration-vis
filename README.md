@@ -151,6 +151,7 @@ A view like this is kind of cool:
 ![img/art1.png](img/art1.png)
 
 ## Updates with new graphics
-[https://vsoch.github.io/network-integration-vis/vis8.html](https://vsoch.github.io/network-integration-vis/vis8.html)
-[https://vsoch.github.io/network-integration-vis/vis9.html](https://vsoch.github.io/network-integration-vis/vis9.html)
+
+- [https://vsoch.github.io/network-integration-vis/vis8.html](https://vsoch.github.io/network-integration-vis/vis8.html)
+- [https://vsoch.github.io/network-integration-vis/vis9.html](https://vsoch.github.io/network-integration-vis/vis9.html)
 
